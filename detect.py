@@ -48,7 +48,11 @@ from utils.general import (LOGGER, Profile, check_file, check_img_size, check_im
                            increment_path, non_max_suppression, print_args, scale_boxes, strip_optimizer, xyxy2xywh)
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, smart_inference_mode
+from win32com.client import Dispatch
 
+def speak(str):
+        speak = Dispatch(("SAPI.SpVoice"))
+        speak.speak(str)
 
 @smart_inference_mode()
 def run(
@@ -176,7 +180,13 @@ def run(
                         width = xmax - xmin
                         height = ymax - ymin
                         print(f"Width: {width}, Height: {height}")
-                        
+                        print(c)
+                        if(c == 0):
+                             speak("pen detected")
+                        elif(c == 1):
+                            speak("Key Detected")
+                        elif(c == 2):
+                            speak("Wallet Detected")
                     
                         
                     if save_crop:
